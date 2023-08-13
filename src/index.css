@@ -13,14 +13,21 @@
 body {
   font-family: 'Roboto', sans-serif;
 }
-
-.bg-desktop{
-  background-image: url(./assets/images/illustration-sign-up-desktop.svg);
+/* For mobile devices */
+.bg-image {
+  background-image: url(./assets/images/illustration-sign-up-mobile.svg);
   background-size: cover;
-  width: fit-content;
-  height: fit-content;
+  width: 100%;
+  height: 15rem;
 }
 
-.bg-mobile{
-  background-image: url(./assets/images/illustration-sign-up-mobile.svg);
+/* For larger screens using a media query */
+@media (min-width: 640px) {
+  .bg-image {
+    background-image: url(./assets/images/illustration-sign-up-desktop.svg);
+    padding: 16rem 11rem;
+    width: auto;
+    height: auto;
+  }
+
 }

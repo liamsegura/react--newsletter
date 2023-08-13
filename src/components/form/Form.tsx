@@ -29,11 +29,11 @@ const Form: React.FC = () => {
   };
 
   return (
-    <div className="flex items-center justify-center container-fluid bg-white pr-7 pl-12 pt-6 pb-6 rounded-[2rem]">
-      <div className="mr-8">
+    <div className="container-fluid flex flex-col-reverse sm:flex-row items-center justify-end sm:justify-center rounded-none w-full h-full sm:w-auto sm:h-auto bg-white  sm:pr-7 sm:pl-12 sm:pt-6 sm:pb-6 sm:rounded-[2rem]">
+      <div className="p-6 sm:mr-8 sm:p-0">
         {!isSubmitted ? (
           <form onSubmit={handleSubmit} className="flex flex-col">
-            <h2 className="text-[3rem] font-bold mb-4 text-indigo-900">
+            <h2 className="mt-4 sm:mt-0 text-4xl sm:text-[3rem] font-bold mb-4 text-indigo-900">
               Stay updated!
             </h2>
             <p className="mb-4 text-gray-600 max-w-sm">
@@ -69,7 +69,7 @@ const Form: React.FC = () => {
             />
 
             <button
-              className="w-full p-3 text-white bg-indigo-900 rounded-md font-medium"
+              className="w-full p-3 text-white bg-indigo-900 rounded-md font-medium group hover:shadow-lg hover:shadow-orange-500/50 hover:bg-gradient-to-r from-pink-500 to-orange-500 "
               type="submit"
             >
               Subscribe to monthly newsletter
@@ -83,7 +83,7 @@ const Form: React.FC = () => {
           </form>
         )}
       </div>
-      <div className="bg-desktop py-[16rem] px-[11rem] rounded-xl"></div>
+      <div className="bg-image rounded-b-xl sm:rounded-xl"></div>
     </div>
   );
 };
