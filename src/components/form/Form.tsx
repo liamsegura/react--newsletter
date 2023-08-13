@@ -16,26 +16,39 @@ const Form: React.FC = () => {
     }
   };
 
+  const handleDismiss = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    setIsSubmitted(false);
+    setEmail("");
+  };
+
   const validEmail = (email: string) => {
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
   };
 
   return (
     <div>
-      <form onSubmit={handleSubmit}>
-        <label>
-          Email address
-          <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="email@company.com"
-          />
-        </label>
-        <button type="submit">Subscribe to monthly newsletter</button>
-        {error && <p>Invalid email</p>}
-        {isSubmitted && <p>Thanks for subscribing!</p>}
-      </form>
+      {!isSubmitted ? (
+        <form onSubmit={handleSubmit}>
+          <label>
+            Email address
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="email@company.com"
+            />
+          </label>
+          <button type="submit">Subscribe to monthly newsletter</button>
+          {error && <p>Invalid email</p>}
+        </form>
+      ) : (
+        <form onSubmit={handleDismiss}>
+          <p>Thanks for subscribing!</p>
+          <button type="submit">Dismiss message</button>
+        </form>
+      )}
     </div>
   );
 };
