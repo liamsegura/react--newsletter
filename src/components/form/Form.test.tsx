@@ -21,3 +21,14 @@ test("enables submit button for valid email", () => {
 
   expect(subscribeButton).not.toBeDisabled();
 });
+
+test("Form submitted successfully", () => {
+  const { getByText, getByLabelText, queryByText } = render(<Form />);
+  const emailInput = getByLabelText(/email address/i);
+  const subscribeButton = getByText(/subscribe to monthly newsletter/i);
+
+  fireEvent.change(emailInput, { target: { value: "valid@example.com" } });
+  fireEvent.click(subscribeButton);
+
+  expect(queryByText(/thanks for subscribing!/i)).toBeInTheDocument();
+});

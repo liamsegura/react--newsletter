@@ -3,6 +3,7 @@ import React, { useState } from "react";
 const Form: React.FC = () => {
   const [email, setEmail] = useState("");
   const [error, setError] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -11,7 +12,7 @@ const Form: React.FC = () => {
       setError(true);
     } else {
       setError(false);
-      // Perform other actions on valid submission
+      setIsSubmitted(true);
     }
   };
 
@@ -33,6 +34,7 @@ const Form: React.FC = () => {
         </label>
         <button type="submit">Subscribe to monthly newsletter</button>
         {error && <p>Invalid email</p>}
+        {isSubmitted && <p>Thanks for subscribing!</p>}
       </form>
     </div>
   );
