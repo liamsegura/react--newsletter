@@ -1,9 +1,15 @@
-import { render, fireEvent, queryByLabelText } from "@testing-library/react";
+import {
+  render,
+  fireEvent,
+  queryByLabelText,
+  getByRole,
+  queryByPlaceholderText,
+} from "@testing-library/react";
 import Form from "./Form";
 
 test("displays error for invalid email", () => {
-  const { getByLabelText, getByText, queryByText } = render(<Form />);
-  const emailInput = getByLabelText(/email address/i);
+  const { getByPlaceholderText, getByText, queryByText } = render(<Form />);
+  const emailInput = getByPlaceholderText("email@company.com");
   const subscribeButton = getByText(/subscribe to monthly newsletter/i);
 
   fireEvent.change(emailInput, { target: { value: "invalidemail" } });
@@ -13,8 +19,8 @@ test("displays error for invalid email", () => {
 });
 
 test("enables submit button for valid email", () => {
-  const { getByLabelText, getByText } = render(<Form />);
-  const emailInput = getByLabelText(/email address/i);
+  const { getByPlaceholderText, getByText } = render(<Form />);
+  const emailInput = getByPlaceholderText("email@company.com");
   const subscribeButton = getByText(/subscribe to monthly newsletter/i);
 
   fireEvent.change(emailInput, { target: { value: "valid@example.com" } });
@@ -23,8 +29,8 @@ test("enables submit button for valid email", () => {
 });
 
 test("form submitted successfully", () => {
-  const { getByText, getByLabelText, queryByText } = render(<Form />);
-  const emailInput = getByLabelText(/email address/i);
+  const { getByText, getByPlaceholderText, queryByText } = render(<Form />);
+  const emailInput = getByPlaceholderText("email@company.com");
   const subscribeButton = getByText(/subscribe to monthly newsletter/i);
 
   fireEvent.change(emailInput, { target: { value: "valid@example.com" } });
@@ -34,10 +40,13 @@ test("form submitted successfully", () => {
 });
 
 test("form dismisses successfully", () => {
-  const { getByText, getByLabelText, queryByText, queryByLabelText } = render(
-    <Form />
-  );
-  const emailInput = getByLabelText(/email address/i);
+  const {
+    getByText,
+    getByPlaceholderText,
+    queryByText,
+    queryByPlaceholderText,
+  } = render(<Form />);
+  const emailInput = getByPlaceholderText("email@company.com");
   const subscribeButton = getByText(/subscribe to monthly newsletter/i);
 
   fireEvent.change(emailInput, { target: { value: "valid@example.com" } });
@@ -47,5 +56,5 @@ test("form dismisses successfully", () => {
 
   fireEvent.click(getByText(/dismiss message/i));
 
-  expect(queryByLabelText(/email address/i)).toHaveValue("");
+  expect(queryByPlaceholderText("email@company.com")).toHaveValue("");
 });

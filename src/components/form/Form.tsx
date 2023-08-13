@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import listTicks from "../../assets/images/icon-list.svg";
 
 const Form: React.FC = () => {
   const [email, setEmail] = useState("");
@@ -28,18 +29,33 @@ const Form: React.FC = () => {
   };
 
   return (
-    <div>
+    <div className="container-fluid bg-red-100 p-4">
       {!isSubmitted ? (
-        <form onSubmit={handleSubmit}>
-          <label>
-            Email address
-            <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="email@company.com"
-            />
-          </label>
+        <form onSubmit={handleSubmit} className="flex flex-col">
+          <h2>Stay updated!</h2>
+          <p>Join 60,000+ product managers receiving monthly updates on:</p>
+          <ul>
+            <li>
+              <img src={listTicks} alt="list" />
+              <p>Product discovery and building what matters</p>
+            </li>
+            <li>
+              <img src={listTicks} alt="list" />
+              <p>Measuring to ensure updates are a success</p>
+            </li>
+            <li>
+              <img src={listTicks} alt="list" />
+              <p>And much more!</p>
+            </li>
+          </ul>
+          <label>Email address</label>
+          <input
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="email@company.com"
+          />
+
           <button type="submit">Subscribe to monthly newsletter</button>
           {error && <p>Invalid email</p>}
         </form>
