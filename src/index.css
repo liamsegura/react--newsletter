@@ -13,3 +13,14 @@
 body {
   font-family: 'Roboto', sans-serif;
 }
+
+.bg-desktop{
+  background-image: url(./assets/images/illustration-sign-up-desktop.svg);
+  background-size: cover;
+  width: fit-content;
+  height: fit-content;
+}
+
+.bg-mobile{
+  background-image: url(./assets/images/illustration-sign-up-mobile.svg);
+}
