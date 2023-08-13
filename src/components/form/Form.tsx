@@ -78,12 +78,29 @@ const Form: React.FC = () => {
           </form>
         ) : (
           <form onSubmit={handleDismiss}>
-            <p>Thanks for subscribing!</p>
-            <button type="submit">Dismiss message</button>
+            <div className="p-6 mt-20 sm:m-0 max-w-sm">
+              <img className="w-16 sm:w-20" src={listTicks} alt="list" />
+              <h2 className="pt-8 sm:mt-0 text-4xl sm:text-[3rem] font-bold mb-4 text-indigo-900">
+                Thanks for subscribing!
+              </h2>
+              <p>
+                A confirmation email has been sent to <strong>{email}</strong>.
+                Please open it and click the button inside to confirm your
+                subscription.
+              </p>
+              <button
+                className="w-full p-3 mt-60 sm:mt-8 text-white bg-indigo-900 rounded-md font-medium group hover:shadow-lg hover:shadow-orange-500/50 hover:bg-gradient-to-r from-pink-500 to-orange-500 "
+                type="submit"
+              >
+                Dismiss message
+              </button>
+            </div>
           </form>
         )}
       </div>
-      <div className="bg-image rounded-b-xl sm:rounded-xl"></div>
+      {!isSubmitted && (
+        <div className="bg-image rounded-b-xl sm:rounded-xl"></div>
+      )}
     </div>
   );
 };
